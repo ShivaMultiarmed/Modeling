@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="897c5de9-465b-4545-820e-be089ecc6079" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/task4.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2_area.py" beforeDir="false" afterPath="$PROJECT_DIR$/task2_area.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2_perimeter.py" beforeDir="false" afterPath="$PROJECT_DIR$/task2_perimeter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task4.py" beforeDir="false" afterPath="$PROJECT_DIR$/task4.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +42,7 @@
     "Python.task2.executor": "Run",
     "Python.task2_area.executor": "Run",
     "Python.task2_perimeter.executor": "Run",
-    "Python.task4.executor": "Debug",
+    "Python.task4.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "D:/Магистратура/2 семестр/Modeling/Modeling",
@@ -100,11 +98,6 @@
           <url>file://$PROJECT_DIR$/main.py</url>
           <line>8</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/task4.py</url>
-          <line>23</line>
-          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,5 +1,6 @@
 from random import random
 import matplotlib.pyplot as plt
+from matplotlib.lines import lineStyles
 
 states_num = 10
 
@@ -22,5 +23,9 @@ for i in range(0, 1000):
             break
     state_counts[current_state] += 1
 
+plt.grid(linestyle="--")
 plt.scatter(range(1, states_num + 1), state_counts)
+plt.xlabel("Номера состояний")
+plt.ylabel("Количество переходов")
+plt.xticks(range(0, states_num + 2))
 plt.show()
