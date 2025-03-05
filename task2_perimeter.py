@@ -4,13 +4,6 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 
-def create_x(ksi):
-    if ksi < 0.5:
-        x = np.arccos(1 - S * ksi)
-    else:
-        x = np.arcsin(S * ksi + np.sqrt(2) - 1)
-    return x
-
 def density(x):
     if x < np.pi / 4:
         return np.sin(x)
@@ -35,18 +28,19 @@ print(str(perimeter))
 
 def create_point_on_graph():
     ksi = random()
-    ksi_2 = random()
-    if ksi > (perimeter_1 + perimeter_2) / perimeter:
-        x = ksi_2 * perimeter_3
-        y = 0
+    ksi2 = random()
+    if ksi < perimeter_1 / perimeter:
+        x = ksi2 * np.pi / 4
+        y = np.sin(x)
+    elif ksi < (perimeter_1 + perimeter_2) / perimeter:
+        x = ksi2 * np.pi / 4 + np.pi / 4
+        y = np.cos(x)
     else:
-        x = create_x(ksi_2)
-        y = density(x)
-
+        x = ksi2 * np.pi / 2
+        y = 0
     return x, y
 
-
-points = [create_point_on_graph() for i in range(0, 200)]
+points = [create_point_on_graph() for i in range(0, 1000)]
 x_values, y_values = zip(*points)
 plt.scatter(x_values, y_values, s = 5, c = "#506c96")
 plt.show()
