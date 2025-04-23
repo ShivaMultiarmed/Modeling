@@ -45,7 +45,10 @@ def generate_random() -> float:
     else:
         x = 2.5 - np.sqrt(2.25 + (2 / k) * (ksi - 0.144))
 
-    return (x - (-0.2)) / (2.5 - (-0.2))
+    x_min = -0.2
+    x_max = 2.5
+
+    return (x - x_min) / (x_max - x_min)
 
 def play_process(matrix: list[list[float]], f: Callable[[], float]) -> list[int]:
     states_num = len(matrix)
