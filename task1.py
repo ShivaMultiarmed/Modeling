@@ -2,9 +2,8 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 
-k = -0.76178
-
 def quantile(ksi):
+    k = -0.76178
     if ksi < 0.144:
         return 0.2 * (1500 * ksi) ** (1/3) - 0.2
     else:
