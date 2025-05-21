@@ -1,13 +1,15 @@
 from collections.abc import Callable
-from random import random
+import random
 from typing import Tuple
 
 import numpy as np
 from matplotlib import pyplot as plt
 
 
+simulation_steps_count = 100_000
+
 def generate_matrix(states_num: int) -> list[list[float]]:
-    matrix = [[random() for j in range(0, states_num)] for i in range(0, states_num)]
+    matrix = [[random.random() for j in range(0, states_num)] for i in range(0, states_num)]
 
     iterations = 20
 
@@ -39,7 +41,7 @@ def print_matrix(matrix: list[list[float]]):
     print("\n")
 
 def generate_random() -> float:
-    ksi = random()
+    ksi = random.random()
     k = -0.76178
     if ksi < 0.144:
         x = 0.2 * (1500 * ksi) ** (1 / 3) - 0.2
@@ -51,16 +53,23 @@ def generate_random() -> float:
 
     return (x - x_min) / (x_max - x_min)
 
+def distribution(x: float) -> float:
+    if x < 1:
+        return x ** 3 / 12 + x ** 2 / 20 + x / 100 + 1 / 1500
+    else:
+        k = -0.76178
+        return k * x ** 2 / 2 - 5 * k * x / 2 + 2 * k + 0.144
+
 def play_process(
         matrix: list[list[float]],
-        f: Callable[[], float]
+        quantile: Callable[[], float]
 ) -> Tuple[list[int], list[int]]:
     states_num = len(matrix)
     states = []
     state_counts = [0 for _ in range(states_num)]
-    current_state = int(random() * states_num)
-    for i in range(100_000):
-        ksi = f()
+    current_state = int(random.random() * states_num)
+    for i in range(simulation_steps_count):
+        ksi = quantile()
         new_state = 0
         for j in range(states_num):
             if ksi < sum(matrix[current_state][0:j + 1]):
@@ -88,14 +97,14 @@ def evaluate_auto_correlation(data: list[int]) -> list[float]:
     return [np.sum(centered[:N-k] * centered[k:]) / var for k in range(N)]
 
 def show_auto_correlation(data: list[float]):
-    plt.stem(range(1, len(data) + 1), data) #, use_line_collection=True)
+    plt.stem(range(1, len(data) + 1), data)
     plt.xlabel('Лаг')
     plt.ylabel('Автокорреляция')
     plt.title('Автокорреляционная функция')
     plt.grid(True)
     plt.show()
 
-states_num = 50
+states_num = 20
 matrix_a = generate_matrix(states_num)
 matrix_b = generate_matrix(states_num)
 print_matrix(matrix_a)
@@ -108,5 +117,6 @@ show_histogram(process_a_count)
 show_histogram(process_b_count)
 auto_correlation_a = evaluate_auto_correlation(process_a)
 auto_correlation_b = evaluate_auto_correlation(process_b)
+
 show_auto_correlation(auto_correlation_a[0:10])
 show_auto_correlation(auto_correlation_b[0:10])
